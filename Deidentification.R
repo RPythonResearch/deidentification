@@ -1,7 +1,7 @@
 library(openxlsx)
 library(dplyr)
 
-source("C:/R/Projects/R-4.4.1-RPythonStudy-Deidentification/source/my_functions.R")
+source("source/my_functions.R")
 
 file_name<- "han20230213.csv"
 raw_data <- my_read_csv_from_raw_data_folder(file_name)
@@ -45,3 +45,7 @@ file_name <- sub("\\.csv$", ".xlsx", file_name)
 deidentified_file_name<-paste0("deidentified_", file_name)
 deidentified_file_path <- file.path(raw_data_folder, deidentified_file_name)
 write.xlsx(deidentified_raw_data, file=deidentified_file_path, rowNames=FALSE)
+file_name <- sub("\\.xlsx$", ".csv", file_name)
+deidentified_file_name<-paste0("deidentified_", file_name)
+deidentified_file_path <- file.path(raw_data_folder, deidentified_file_name)
+write.csv(deidentified_raw_data, file=deidentified_file_path, row.names=FALSE)
